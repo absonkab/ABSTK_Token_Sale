@@ -248,10 +248,6 @@ App = {
 
 $(function() {
     $(window).load(function() {
-        $('#loader').show();
-        $('#content').hide();
-        $('#loader3').hide();
-        $('#loader2').hide();
         App.init();
     })
 });
