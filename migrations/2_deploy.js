@@ -7,7 +7,7 @@ module.exports = async function(deployer, network, accounts) {
     const token = await ABSToken.deployed();
 
     //deploy crowdsale contract
-    await deployer.deploy(ABSCrowdsale, 1000000000, "0xA40E51620faC81CA03acfB378F24a48cbD41D574", token.address);
+    await deployer.deploy(ABSCrowdsale, 100000000000000, "0xF616C5901adDce6219c3de0AF1757Fef869Cba65", token.address);
     const crowdsale = await ABSCrowdsale.deployed();
 
     //calculate tokens amount to sale in ICO

@@ -1193,12 +1193,13 @@
     "56": {
       "events": {},
       "links": {},
-      "address": "0xE46A564D37dC9b1e78B3B65A2210839D948fD913",
-      "transactionHash": "0xa37c254a3056ea379200a740f8754f2bc1f7862fc3e1429cda67290c13c587b9"
+      "address": "0xB459FB4Fc333afee45F608b4362FbdF7c1881946",
+      "transactionHash": "0xad0f7062899ca346c23b630add01912531d4fcab8ad303891c2ee8ac49439c0b"
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-02T17:45:39.470Z",
+  "updatedAt": "2022-02-04T14:24:47.667Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
