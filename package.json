@@ -6,7 +6,8 @@
     "dependencies": {
         "@openzeppelin/contracts": "2.5.0",
         "@truffle/contract": "^4.4.5",
-        "@truffle/hdwallet-provider": "^2.0.0"
+        "@truffle/hdwallet-provider": "^2.0.0",
+        "web3-utils": "^1.7.0"
     },
     "scripts": {
         "dev": "lite-server"

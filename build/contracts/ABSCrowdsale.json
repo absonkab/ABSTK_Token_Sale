@@ -688,12 +688,12 @@
     "56": {
       "events": {},
       "links": {},
-      "address": "0x08dfB13c3988774609EAD7883bbCc48dD95aD095",
-      "transactionHash": "0x3a51c9da78b42a0d903eff3b93e3e4dc0789a66b3224e4efa2f47d625e3142d3"
+      "address": "0xa394B8738514190E8f1f23412298EC2F87d75109",
+      "transactionHash": "0x33ce539985f2ee52b107d537ef1511063c86668a9a4016724783a7c1442f7dc0"
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-04T14:24:47.671Z",
+  "updatedAt": "2022-02-05T12:53:40.425Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {
