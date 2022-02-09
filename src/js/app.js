@@ -104,8 +104,8 @@ App = {
             return abscrowdsaleInstance.rate();
         }).then(function(rate) {
             App.tokenPrice = rate;
+            $('.token-price').html(App.noExponents(web3.utils.fromWei(App.tokenPrice, "ether") / 10 ** 18));
             App.tokenPrice = parseInt(App.tokenPrice.toString());
-            $('.token-price').html(web3.utils.fromWei(Math.pow(10, App.decimals) / App.tokenPrice, "ether"));
             console.log("rate: ", App.tokenPrice);
             return abscrowdsaleInstance.weiRaised();
         }).then(function(weiRaised) {
