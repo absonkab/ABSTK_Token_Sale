@@ -6,6 +6,8 @@ App = {
     loading: false,
     web3Connect: false,
     tokenPrice: 0,
+    tokenRate: 0,
+    rate: 0,
     tokensSold: 0,
     totalSupply: 0,
     decimals: 0,
@@ -22,10 +24,12 @@ App = {
             // If a web3 instance is already provided by Meta Mask.
             App.web3Provider = web3.currentProvider;
             web3 = new Web3(web3.currentProvider);
+            App.web3Connect = true;
         } else {
             // Specify default instance if no web3 instance provided
             App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
             web3 = new Web3(App.web3Provider);
+            App.web3Connect = true;
         }
         return App.initContracts();
     },
@@ -103,16 +107,16 @@ App = {
             abscrowdsaleInstance = instance;
             return abscrowdsaleInstance.rate();
         }).then(function(rate) {
-            App.tokenPrice = rate;
-            $('.token-price').html(App.noExponents(web3.utils.fromWei(App.tokenPrice, "ether") / 10 ** 18));
-            App.tokenPrice = parseInt(App.tokenPrice.toString());
-            console.log("rate: ", App.tokenPrice);
+            App.rate = rate;
+            //$('.token-price').html(App.noExponents(web3.utils.fromWei(App.tokenRate, "ether") / (10 ** 18) * 7.37));
+            App.tokenRate = parseInt(App.rate.toString());
+            console.log("rate: ", App.tokenRate);
             return abscrowdsaleInstance.weiRaised();
         }).then(function(weiRaised) {
             weiRaised = parseInt(weiRaised.toString());
             console.log("weiRaised: ", weiRaised);
             //weiRaised = weiRaised.toNumber();
-            let tksold = weiRaised * App.tokenPrice * Math.pow(10, -App.decimals);
+            let tksold = weiRaised * App.tokenRate * Math.pow(10, -App.decimals);
             //App.tokensSold = tksold;
             console.log("token sold: ", tksold);
             console.log("weiRaised: ", weiRaised);
@@ -141,11 +145,13 @@ App = {
                 return absTokenInstance.decimals();
             }).then(function(decimals) {
                 App.decimals = decimals.toNumber();
-                App.tokensSold = parseInt(App.noExponents(weiRaised * App.tokenPrice * Math.pow(10, -App.decimals)));
+                App.tokensSold = parseInt(App.noExponents(weiRaised * App.tokenRate * Math.pow(10, -App.decimals)));
                 //App.tokensSold = App.convertExpToDec(weiRaised*App.tokenPrice*Math.pow(10, -App.decimals));
+                App.tokenPrice = App.noExponents(web3.utils.fromWei(App.rate, "ether") / (10 ** App.decimals) * 7.37)
+                $('.token-price').html(App.tokenPrice);
                 $('.tokens-sold').html(App.tokensSold);
                 console.log("decimals: ", decimals);
-                console.log("tokensSold: ", weiRaised * App.tokenPrice * Math.pow(10, -App.decimals));
+                console.log("tokensSold: ", weiRaised * App.tokenRate * Math.pow(10, -App.decimals));
                 return absTokenInstance.totalSupply();
             }).then(function(totalSupply) {
                 totalSupply = parseInt(totalSupply.toString());
@@ -190,7 +196,7 @@ App = {
         console.log("Amount of Tokens bought...", numberOfTokens)
         numberOfTokens = Number(numberOfTokens);
         console.log("Amount of Tokens bought converted in type number...", numberOfTokens)
-        var numberOfWeis = numberOfTokens / (App.tokenPrice * Math.pow(10, -App.decimals));
+        var numberOfWeis = numberOfTokens / (App.tokenRate * Math.pow(10, -App.decimals));
         numberOfWeis = App.noExponents(numberOfWeis);
         console.log("nombre de wei correspondant ", numberOfWeis);
         console.log("valeur en BNB correspondant ", numberOfWeis * Math.pow(10, -App.decimals));
