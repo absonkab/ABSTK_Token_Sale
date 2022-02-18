@@ -215,6 +215,9 @@ App = {
                     //user rejected the transaction
                     alert("Vous avez rejeté la transaction");
                     location.reload();
+                } else {
+                    alert("Une erreur s'est produite! \n Vérifiez que vous avez assez de BNB smart chain pour couvrir les frais de réseau!")
+                    location.reload();
                 }
             })
             /*.catch(function (e) {
